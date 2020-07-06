@@ -48,9 +48,9 @@ public class EmployeeDataServices {
 
 		long endTime = System.nanoTime();
 		LOG.debug("*** getLimitedEmployees: End : " + ( (endTime - startTime) / 1000000)  + " ms");
-//		return employeeList;
+		return employeeList;
 
-		
+		/* validate Java stream and lambda operation timing - Filter data		
 		LOG.debug("*** Java Filter: START : " );
 		startTime = System.nanoTime();
 		// filter result by gender = female and name start with
@@ -60,7 +60,9 @@ public class EmployeeDataServices {
 				.collect(Collectors.toList());
 		endTime = System.nanoTime();
 		LOG.debug("*** Java Filter: START : " + + ((endTime - startTime) / 1000000) + " ms");
+		*/
 
+		/* validate Java stream and lambda operation timing - filter data and count
 		LOG.debug("*** Java Filter 2: START : " );
 		startTime = System.nanoTime();
 		long resultCount = employeeList
@@ -70,9 +72,9 @@ public class EmployeeDataServices {
 		endTime = System.nanoTime();
 		LOG.debug("*** Java Filter 2: START : " + + ((endTime - startTime) / 1000000) + " ms");
 		LOG.debug("*** Result Count :  " + resultCount);
+      */
 
-
-		return femaleEmployeeList;
+//		return femaleEmployeeList;
 
 		 
 	}

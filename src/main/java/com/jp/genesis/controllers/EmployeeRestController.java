@@ -43,15 +43,6 @@ public class EmployeeRestController {
 	public ResponseEntity<?> getAllEmployeees() {
 		LOG.debug("Inside /employees " );
 
-		//		List<Employee> employeeList = new ArrayList<Employee>();
-		//		Employee e1 = new Employee(1,"jitesh1", 1, 1000);
-		//		employeeList.add(e1);
-		//		Employee e2 = new Employee(2,"jitesh2", 1, 2000);
-		//		employeeList.add(e2);
-		//		Employee e3 = new Employee(3,"jitesh3", 2, 3000);
-		//		employeeList.add(e3);
-		//		return new ResponseEntity<>(null ,HttpStatus.OK );
-
 		List<Employee> employeeList =  employeeDataServices.getAllEmployees();
 
 		return new ResponseEntity<List<Employee>>(employeeList ,HttpStatus.OK );
@@ -76,24 +67,6 @@ public class EmployeeRestController {
 //
 //			listOfEmployeeList.add(getHeaderList());
 //
-//			List<String> empList = new ArrayList<String>(6);			
-//			empList.add("10001");
-//			empList.add("1953-09-02");
-//			empList.add("Georgi");
-//			empList.add("Facello");
-//			empList.add("M");
-//			empList.add("1986-06-26");
-//			listOfEmployeeList.add(empList);
-//
-//			empList = new ArrayList<String>(6);
-//			empList.add("10002");
-//			empList.add("1964-06-02");
-//			empList.add("Bezalel");
-//			empList.add("Simmel");
-//			empList.add("F");
-//			empList.add("1985-11-21");
-//			listOfEmployeeList.add(empList);
-//			employeeResponse.setValueList(listOfEmployeeList);
 			
 			List<List<String>> listOfEmployeeList = employeeDataServices.getLimitedEmployeesJdbcTemplate(limit, offset);
 			employeeResponse.setValueList(listOfEmployeeList);
