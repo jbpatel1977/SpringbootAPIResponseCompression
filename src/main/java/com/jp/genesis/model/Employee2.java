@@ -1,4 +1,4 @@
-package com.jp.genesis.models;
+package com.jp.genesis.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

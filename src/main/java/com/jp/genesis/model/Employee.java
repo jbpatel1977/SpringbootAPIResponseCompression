@@ -1,4 +1,4 @@
-package com.jp.genesis.models;
+package com.jp.genesis.model;
 
 import java.util.Date;
 
@@ -18,6 +18,27 @@ public class Employee {
 	
 	private static final long serialVersionUID = 1L;
 	
+	public Employee() {
+	}
+	
+	public Employee( Date birth_date, String first_name, String last_name, char gender, Date hire_date) {
+		super();
+		this.birth_date = birth_date;
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.gender = gender;
+		this.hire_date = hire_date;
+	}
+	
+	public Employee(int emp_no,  Date birth_date, String first_name, String last_name, char gender, Date hire_date) {
+		super();
+		this.emp_no = emp_no;
+		this.birth_date = birth_date;
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.gender = gender;
+		this.hire_date = hire_date;
+	}
 	
 	@Id
 	@Column(name="emp_no")
@@ -27,6 +48,8 @@ public class Employee {
 	@Column(name="birth_date")
     private Date birth_date;
 	
+
+
 	@Column(name="first_name")
     private String first_name;
 	

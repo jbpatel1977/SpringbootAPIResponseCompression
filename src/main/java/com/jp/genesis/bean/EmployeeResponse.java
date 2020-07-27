@@ -1,8 +1,8 @@
-package com.jp.genesis.beans;
+package com.jp.genesis.bean;
 
 import java.util.List;
 
-import com.jp.genesis.models.Employee;
+import com.jp.genesis.model.Employee;
 
 public class EmployeeResponse {
 	

@@ -1,8 +1,9 @@
-package com.jp.genesis.services;
+package com.jp.genesis.service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -12,13 +13,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jp.genesis.controllers.EmployeeRestController;
-import com.jp.genesis.models.Employee;
+import com.jp.genesis.controller.EmployeeRestController;
+import com.jp.genesis.exception.ResourceNotFound;
+import com.jp.genesis.model.Employee;
 import com.jp.genesis.repository.EmployeeRepository;
 
 @Service
 //@Transactional
-public class EmployeeDataServices {
+public class EmployeeDataServices   {
 	public static final Logger LOG = LoggerFactory.getLogger(EmployeeRestController.class);
 
 
@@ -27,6 +29,19 @@ public class EmployeeDataServices {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
+	
+	public Optional<Employee> getEmployeeById(int emp_no) throws ResourceNotFound{
+		Optional<Employee> emp = employeeRepository.findById(emp_no);
+		
+		// validate null pointer exception, it should show generic error message through ControllerAdvice
+		// String fn = emp.get().getFirst_name();
+		
+		// validate Resource not found exception
+		if (null == emp || !emp.isPresent()) {
+			throw new ResourceNotFound("Employee with id{" + emp_no + "} not found");
+		}
+		return emp;
+	}
 
 	public List<Employee> getAllEmployees(){
 
@@ -77,6 +92,11 @@ public class EmployeeDataServices {
 //		return femaleEmployeeList;
 
 		 
+	}
+	
+	public Employee saveEmployees(Employee employee){
+		Employee newEmployee = employeeRepository.save(employee);
+		return newEmployee;
 	}
 
 	public List<List<String>>  getLimitedEmployeesJdbcTemplate(int limit, int offset){
